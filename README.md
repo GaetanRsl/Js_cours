@@ -1,4 +1,4 @@
-# Java
+# Javascript
 
 Rappel :
 -> Lancer le programmer : > node nomdufichier.js
