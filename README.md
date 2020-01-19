@@ -1,5 +1,4 @@
 # Javascript
-
 Rappel :
 -> Lancer le programmer : > node nomdufichier.js
 -> Installer un paquet : > npm install nom-du-paquet
@@ -7,11 +6,9 @@ Rappel :
 ## Cours
 ### Function
 ```javascript
-
 function toto(x) {console.log(x);} 	// declaration de fonction -> disponible des le lancment
 let a = (x) => {console.log(x);}	// expression de fonction -> disponible que apres
-
-  ```
+```
 ### Details
 ```javascript
 // Details
@@ -21,15 +18,15 @@ let a = (x) => {console.log(x);}	// expression de fonction -> disponible que apr
 null+"ify";	// "nullify"
 "5"*5;	//25
 "strawberry" * 5 ;// NaN
-  ```
-Fonction qui multiplue a et b
+```
+Fonction qui multiplie a et b
 ```javascript
 (a,b) => {return a*b}
-  ```
+```
 Fonction qui renvoie une fonction capable de réaliser la multiplication par a
 ```javascript
 (a,b) => {return (b)=>{return b*a}}
-  ```
+```
 Scope implicite Vs Objet
 ```javascript
 function create() {
@@ -38,7 +35,7 @@ function create() {
 }
 let a = create();	// recup function
 console.log(a(12)); // 35
-  ```
+```
 ```javascript
 function create2() {
 	this.reponse = 23;
@@ -46,36 +43,33 @@ function create2() {
 }
 let a = new create2()	// recup objet
 console.log(a.calc(12)) // 35
-  ```
+```
 ### Hashmap
 ```javascript
 obj = { "hello" : "coucou", 3:10};
-  ```
+```
 ### Tableau
 ```javascript
 tab = ["bob", "raoul", "louis"];
 tabvide = new Array();
 tabvide = []
 
-  ```
+```
 ### Map / Reduce
 ```javascript
 notes = [10, 15, 3, 20, 19, 9]
 reducer = (accumulateur, currentval) => accumulateur + currentval
 moyenne =notes.reduce(reducer)/notes.length // 12.66
-
-
-  ```
+```
 ## Les classes
 ### Ecriture
 ```javascript
-
 // Ceci est une classe javascript
 function Create() {this.reponse = 23;}
 Create.prototype.calc =  (x)=> { return x + this.reponse; }
 let a = new Create()
 console.log(a.calc(12))//35
-  ```
+```
 
 ### Heritage
 ```javascript
@@ -100,14 +94,12 @@ console.log(a.__proto__) // Create {rep=23, hello:Func., calc:Func.}
 console.log(a.__proto__.__proto__) // Create{calc:Func.}
 console.log(a.__proto__.__proto__.__proto__) // {}
 console.log(a.__proto__.__proto__.__proto__.__proto__) // null
-
-  ```
-  ## Callback
+```
+## Callback
   
 Javascript propose la mise en place de callback en support aux exécutions multithreadées. Le mécanisme de callback est une solution pour ne pas bloquer une exécution monothreadée.
 ### Synchrone
-  ```javascript
-  
+```javascript
 function test(f) {
 	for (var i = 0; i < 20; i++) {
 		console.log("coucou", i);
@@ -115,10 +107,10 @@ function test(f) {
 	f("termine");
 }
 test((message)=>{console.log("->", message);});
-  ```
-  ### Asynchrone
+```
+### Asynchrone
   
-  ```javascript
+```javascript
 function test(f, temps) {
 	setTimeout(()=> {
 		for (var i = 0; i < 20; i++) { 
@@ -129,14 +121,13 @@ function test(f, temps) {
 console.log("Debut")	// Afficher en 1er
 test((message)=> {console.log("-> Terminé");}, 2000);	// Afficher en 3e
 console.log("Fin")	// Afficher en 2e
-
- ```
+```
 Le passage par un système asynchrone à base de callback dans le cas de javascript permet de rendre l'appelant indépendant de l'appelé. Ceci est en changement majeur de paradigme de programmation impératif ou fonctionnel. On peut, dès lors, écrire du code non bloquant sans se soucier de la synchronisation des différents espaces d'exécution.
  
 ### Generalisation des callbacks
 
 Lecture dans un fichier
-  ```javascript
+```javascript
 
 const fs = require('fs');
 fs.readFile('test.txt', 'utf8',
@@ -144,25 +135,23 @@ fs.readFile('test.txt', 'utf8',
 		if (err) throw err;
 		console.log(data);
 });
-  ```
+```
  Lecture fichier et acces à Web
-  ```javascript
-
+```javascript
 request = require('request');
 fs = require('fs');
 // test.txt contient ici un url
 fs.readFile('test.txt', 'utf8', (err, data)=>{
 	request(data, (err, res)=>{ // data est l'url, res est le resultat
 		console.log(res);}); });
-
-  ```
-  ## Promesses
+```
+## Promesses
   
 Le mécanisme des promesses est un mécanisme de remplacement aux callback afin de rendre le code plus fluide. Le mécanisme des callback est un mécanisme de bas-niveau.
 
-Une promesse, commme son nom l'indique, est un objet qui peut produire une valeur unique dans un futur : soit une valeur de résolution, soit une raison pour laquelle elle n'est pas résolue. En interne une promesse doit être dans un des trois états : accomplie, rejetée, en attente. Un devéloppeur peut y attacher une fonction pour gérer l'accomplissement ou le rejet. Une promesse est avide ; elle est lancée dès sa création...
+Une promesse, comme son nom l'indique, est un objet qui peut produire une valeur unique dans un futur : soit une valeur de résolution, soit une raison pour laquelle elle n'est pas résolue. En interne une promesse doit être dans un des trois états : accomplie, rejetée, en attente. Un développeur peut y attacher une fonction pour gérer l'accomplissement ou le rejet. Une promesse est avide ; elle est lancée dès sa création...
 ### Ecriture promesses
-  ```javascript
+```javascript
 <promesse>
 .then (function (res) { ...}) // Réussite
 .catch (function (err) {...}) // Erreur
@@ -170,7 +159,7 @@ Une promesse, commme son nom l'indique, est un objet qui peut produire une valeu
 fs = require('fs-extra-promise');
 fs.readFileAsync('./test.txt', 'utf-8')
 	.then((data) => {console.log(data);});
-  ```
+```
 
 ```javascript
 
@@ -188,15 +177,14 @@ wait(1000) // Apres 1s > 'Bonjour'
 wait(4000) // 'Erreur'
 	.then(()=>{ console.log('Bonjour');}, (erreur)=>{console.log(erreur)}) 
 	.catch((erreur)=>{console.log(erreur)});
-  ```
-
+```
 ```javascript
 wait(2000)
 	.then(()=>{ return wait(4000);}) // Toujours avoir un return pour pouvoir executer la suite
 	.catch((erreur)=>{console.log(erreur)}); // console.log est une execption
 // Affiche erreur apres 2s 
-  ```
-Autre ecriture de setTimeout
+```
+Autre écriture de setTimeout
 ```javascript
 wait = (time) => {
 	return a = new Promise((resolve, reject)=>{
@@ -210,8 +198,7 @@ wait = (time) => {
 }
 wait(2000)
 	.then((val)=> {console.log('Bonjour');})
-	.catch((erreur)=>{console.log(erreur)});
-	
-  ```
+	.catch((erreur)=>{console.log(erreur)});	
+```
 
 
